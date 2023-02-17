@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,182 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/17/top-k-frequent-elements/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZCXu1">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZCXu1 Blog">
+      <meta itemprop="description" content="ZCXu1 Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ZCXu1 Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/17/top-k-frequent-elements/" class="post-title-link" itemprop="url">LeetCode Top 100 - Top K Frequent Elements</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-17 19:39:48 / 修改时间：19:41:12" itemprop="dateCreated datePublished" datetime="2023-02-17T19:39:48+08:00">2023-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode-Top-100/" itemprop="url" rel="index"><span itemprop="name">LeetCode Top 100</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/">LeetCode Page</a></p>
+<blockquote>
+<p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the</em> <code>k</code> <em>most frequent elements</em>. You may return the answer in <strong>any order</strong>.</p>
+</blockquote>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a><strong>Example:</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,1,1,2,2,3], k = 2</span><br><span class="line">Output: [1,2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] unique;</span><br><span class="line">    Map&lt;Integer, Integer&gt; count;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> unique[a];</span><br><span class="line">        unique[a] = unique[b];</span><br><span class="line">        unique[b] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> pivot_index)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">pivot_frequency</span> <span class="operator">=</span> count.get(unique[pivot_index]);</span><br><span class="line">        <span class="comment">// 1. move pivot to end</span></span><br><span class="line">        swap(pivot_index, right);</span><br><span class="line">        <span class="type">int</span> <span class="variable">store_index</span> <span class="operator">=</span> left;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. move all less frequent elements to the left</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt;= right; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (count.get(unique[i]) &lt; pivot_frequency) &#123;</span><br><span class="line">                swap(store_index, i);</span><br><span class="line">                store_index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. move pivot to its final place</span></span><br><span class="line">        swap(store_index, right);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> store_index;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quickselect</span><span class="params">(<span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> k_smallest)</span> &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Sort a list within left..right till kth less frequent element</span></span><br><span class="line"><span class="comment">        takes its place. </span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// base case: the list contains only one element</span></span><br><span class="line">        <span class="keyword">if</span> (left == right) <span class="keyword">return</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// select a random pivot_index</span></span><br><span class="line">        <span class="type">Random</span> <span class="variable">random_num</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        <span class="type">int</span> <span class="variable">pivot_index</span> <span class="operator">=</span> left + random_num.nextInt(right - left); </span><br><span class="line"></span><br><span class="line">        <span class="comment">// find the pivot position in a sorted list</span></span><br><span class="line">        pivot_index = partition(left, right, pivot_index);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// if the pivot is in its final sorted position</span></span><br><span class="line">        <span class="keyword">if</span> (k_smallest == pivot_index) &#123;</span><br><span class="line">            <span class="keyword">return</span>;    </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (k_smallest &lt; pivot_index) &#123;</span><br><span class="line">            <span class="comment">// go left</span></span><br><span class="line">            quickselect(left, pivot_index - <span class="number">1</span>, k_smallest);     </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// go right </span></span><br><span class="line">            quickselect(pivot_index + <span class="number">1</span>, right, k_smallest);  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="comment">// build hash map : character and how often it appears</span></span><br><span class="line">        count = <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num: nums) &#123;</span><br><span class="line">            count.put(num, count.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// array of unique elements</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> count.size();</span><br><span class="line">        unique = <span class="keyword">new</span> <span class="title class_">int</span>[n]; </span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num: count.keySet()) &#123;</span><br><span class="line">            unique[i] = num;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// kth top frequent element is (n - k)th less frequent.</span></span><br><span class="line">        <span class="comment">// Do a partial sort: from less frequent to the most frequent, till</span></span><br><span class="line">        <span class="comment">// (n - k)th less frequent element takes its place (n - k) in a sorted array. </span></span><br><span class="line">        <span class="comment">// All element on the left are less frequent.</span></span><br><span class="line">        <span class="comment">// All the elements on the right are more frequent. </span></span><br><span class="line">        quickselect(<span class="number">0</span>, n - <span class="number">1</span>, n - k);</span><br><span class="line">        <span class="comment">// Return top k frequent elements</span></span><br><span class="line">        <span class="keyword">return</span> Arrays.copyOfRange(unique, n - k, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><code>Top K</code>问题是一个经典的问题，用堆(Heap)去做。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/17/kth-largest-element-in-an-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZCXu1">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZCXu1 Blog">
+      <meta itemprop="description" content="ZCXu1 Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ZCXu1 Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/17/kth-largest-element-in-an-array/" class="post-title-link" itemprop="url">LeetCode Top 100 - Kth Largest Element in an Array</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-17 19:37:14 / 修改时间：19:39:25" itemprop="dateCreated datePublished" datetime="2023-02-17T19:37:14+08:00">2023-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode-Top-100/" itemprop="url" rel="index"><span itemprop="name">LeetCode Top 100</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LeetCode Page</a></p>
+<blockquote>
+<p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the</em> <code>kth</code> <em>largest element in the array</em>.</p>
+<p>Note that it is the <code>kth</code> largest element in the sorted order, not the <code>kth</code> distinct element.</p>
+<p>You must solve it in <code>O(n)</code> time complexity.</p>
+</blockquote>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a><strong>Example:</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3,2,1,5,6,4], k = 2</span><br><span class="line">Output: 5</span><br></pre></td></tr></table></figure>
+
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthLargest</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> quickSelect(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>, k);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">quickSelect</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">randIndex</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(r - l + <span class="number">1</span>) + l;</span><br><span class="line">    swap(nums, randIndex, r);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">pivot</span> <span class="operator">=</span> nums[r];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">nextSwapped</span> <span class="operator">=</span> l;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt; r; ++i)</span><br><span class="line">      <span class="keyword">if</span> (nums[i] &gt;= pivot)</span><br><span class="line">        swap(nums, nextSwapped++, i);</span><br><span class="line">    swap(nums, nextSwapped, r);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> nextSwapped - l + <span class="number">1</span>; <span class="comment">// # of nums &gt;= pivot</span></span><br><span class="line">    <span class="keyword">if</span> (count == k)</span><br><span class="line">      <span class="keyword">return</span> nums[nextSwapped];</span><br><span class="line">    <span class="keyword">if</span> (count &gt; k)</span><br><span class="line">      <span class="keyword">return</span> quickSelect(nums, l, nextSwapped - <span class="number">1</span>, k);</span><br><span class="line">    <span class="keyword">return</span> quickSelect(nums, nextSwapped + <span class="number">1</span>, r, k - count);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>这个算法叫快速选择算法，是快速排序的延申，专门求第<code>K</code>大或第<code>K</code>小，很重要。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
