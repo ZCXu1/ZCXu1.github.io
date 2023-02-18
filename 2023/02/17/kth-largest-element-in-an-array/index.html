@@ -23,11 +23,11 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode Top 100 - Kth Largest Element in an Array">
 <meta property="og:url" content="http://example.com/2023/02/17/kth-largest-element-in-an-array/index.html">
-<meta property="og:site_name" content="ZCXu1 Blog">
+<meta property="og:site_name" content="一亩三分地">
 <meta property="og:description" content="LeetCode Page  Given an integer array nums and an integer k, return the kth largest element in the array. Note that it is the kth largest element in the sorted order, not the kth distinct element. You">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-17T11:37:14.525Z">
-<meta property="article:modified_time" content="2023-02-17T11:39:25.116Z">
+<meta property="article:modified_time" content="2023-02-18T04:14:35.236Z">
 <meta property="article:author" content="ZCXu1">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/17/kth-largest-element-in-an-array/","path":"2023/02/17/kth-largest-element-in-an-array/","title":"LeetCode Top 100 - Kth Largest Element in an Array"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LeetCode Top 100 - Kth Largest Element in an Array | ZCXu1 Blog</title>
+<title>LeetCode Top 100 - Kth Largest Element in an Array | 一亩三分地</title>
   
 
 
@@ -70,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">ZCXu1 Blog</p>
+      <p class="site-title">一亩三分地</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Welcome to my blog!</p>
@@ -113,7 +113,7 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">ZCXu1</p>
-  <div class="site-description" itemprop="description">ZCXu1 Blog</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
@@ -163,12 +163,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZCXu1 Blog">
-      <meta itemprop="description" content="ZCXu1 Blog">
+      <meta itemprop="name" content="一亩三分地">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LeetCode Top 100 - Kth Largest Element in an Array | ZCXu1 Blog">
+      <meta itemprop="name" content="LeetCode Top 100 - Kth Largest Element in an Array | 一亩三分地">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -183,9 +183,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-02-17 19:37:14 / 修改时间：19:39:25" itemprop="dateCreated datePublished" datetime="2023-02-17T19:37:14+08:00">2023-02-17</time>
+      <time title="创建时间：2023-02-17 19:37:14" itemprop="dateCreated datePublished" datetime="2023-02-17T19:37:14+08:00">2023-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-18 12:14:35" itemprop="dateModified" datetime="2023-02-18T12:14:35+08:00">2023-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -215,9 +221,9 @@
 </blockquote>
 <h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a><strong>Example:</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3,2,1,5,6,4], k = 2</span><br><span class="line">Output: 5</span><br></pre></td></tr></table></figure>
 
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthLargest</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> quickSelect(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>, k);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">quickSelect</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">randIndex</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(r - l + <span class="number">1</span>) + l;</span><br><span class="line">    swap(nums, randIndex, r);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">pivot</span> <span class="operator">=</span> nums[r];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">nextSwapped</span> <span class="operator">=</span> l;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt; r; ++i)</span><br><span class="line">      <span class="keyword">if</span> (nums[i] &gt;= pivot)</span><br><span class="line">        swap(nums, nextSwapped++, i);</span><br><span class="line">    swap(nums, nextSwapped, r);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> nextSwapped - l + <span class="number">1</span>; <span class="comment">// # of nums &gt;= pivot</span></span><br><span class="line">    <span class="keyword">if</span> (count == k)</span><br><span class="line">      <span class="keyword">return</span> nums[nextSwapped];</span><br><span class="line">    <span class="keyword">if</span> (count &gt; k)</span><br><span class="line">      <span class="keyword">return</span> quickSelect(nums, l, nextSwapped - <span class="number">1</span>, k);</span><br><span class="line">    <span class="keyword">return</span> quickSelect(nums, nextSwapped + <span class="number">1</span>, r, k - count);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthLargest</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">position</span> <span class="operator">=</span> partition(nums, left, right);</span><br><span class="line">            <span class="comment">//每一轮返回当前pivot的最终位置，它的位置就是第几大的，如果刚好是第K大的数</span></span><br><span class="line">            <span class="keyword">if</span> (position == k - <span class="number">1</span>) <span class="keyword">return</span> nums[position];</span><br><span class="line">            <span class="comment">//二分的思想</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (position &gt; k - <span class="number">1</span>) right = position - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> left = position + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 从大到小排 所以左边是大于区域 右边是小于区域</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">        <span class="comment">// 选最右边的当pivot</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">pivot</span> <span class="operator">=</span> nums[right];</span><br><span class="line">        <span class="comment">// m是大于区域的右边界，且包括，n是小于区域的左边界，且包括</span></span><br><span class="line">        <span class="comment">// 因为初始的时候两个区域都没元素，所以在[left,...right-1]之外</span></span><br><span class="line">        <span class="comment">// 注意这里选最右边当pivot，所以划分区域是[left,...right-1]</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> left - <span class="number">1</span>, n = right;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt; n;) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; pivot) &#123;</span><br><span class="line">                swap(nums, i, --n);</span><br><span class="line">                <span class="comment">// i不动，因为后面的元素没遍历过，交换过来继续查看</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == pivot) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                swap(nums, i++, ++m);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// pivot肯定要进等于区域，因为我们要和右侧交换，也就是小于区域</span></span><br><span class="line">        <span class="comment">// 所以要把小于区域左边起第一个和pivot交换，也就是下标为n的，</span></span><br><span class="line">        <span class="comment">// n是小于区域的左边界，且包括，这样就能保证</span></span><br><span class="line">        <span class="comment">// 交换后pivot在等于区域的最后一个，且右边还是小于pivot的数</span></span><br><span class="line">        swap(nums, n, right);</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> nums[l];</span><br><span class="line">        nums[l] = nums[r];</span><br><span class="line">        nums[r] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>这个算法叫快速选择算法，是快速排序的延申，专门求第<code>K</code>大或第<code>K</code>小，很重要。</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>这个算法叫快速选择算法，是快速排序的延申，专门求第<code>K</code>大或第<code>K</code>小，很重要。其实就是一个很简单的问题，快速排序每次选一个pivot，然后把这组数划分成小于pivot，等于pivot和大于pivot三个区域。然后返回等于区域元素的下标位置j，对于这个数，左边都是小于它的，右边都是大于它的，所以他就是数组中第j小的，如果求第j大的就从大到小排序。</p>
 
     </div>
 
