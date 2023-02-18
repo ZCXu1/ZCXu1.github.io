@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="复杂排序（I）Master公式计算递归的复杂度master公式：也叫主定理。它提供了一种通过渐近符号表示递推关系式的方法。 应用Master定理可以很简便的求解递归方程。 T[n] &#x3D; a*T[n&#x2F;b] + O (N^d)  T[n]: 母问题规模 T[n&#x2F;b]: 子问题规模 a: 子问题数量 O(N^d): 母问题除去子问题剩余的时间复杂度①当d&lt;log(b,a)时，时间复杂度为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Note - Sort(II)">
+<meta property="og:url" content="http://example.com/2022/12/12/sort(II)/index.html">
+<meta property="og:site_name" content="ZCXu1 Blog">
+<meta property="og:description" content="复杂排序（I）Master公式计算递归的复杂度master公式：也叫主定理。它提供了一种通过渐近符号表示递推关系式的方法。 应用Master定理可以很简便的求解递归方程。 T[n] &#x3D; a*T[n&#x2F;b] + O (N^d)  T[n]: 母问题规模 T[n&#x2F;b]: 子问题规模 a: 子问题数量 O(N^d): 母问题除去子问题剩余的时间复杂度①当d&lt;log(b,a)时，时间复杂度为">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-12T02:33:50.859Z">
+<meta property="article:modified_time" content="2023-02-18T02:23:31.550Z">
+<meta property="article:author" content="ZCXu1">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/12/12/sort(II)/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/12/12/sort(II)/","path":"2022/12/12/sort(II)/","title":"Note - Sort(II)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Note - Sort(II) | ZCXu1 Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZCXu1 Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Welcome to my blog!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%8E%92%E5%BA%8F%EF%BC%88I%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">复杂排序（I）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Master%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">Master公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">初始算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8D%E7%94%9F%E9%97%AE%E9%A2%98%EF%BC%9A%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">衍生问题：剑指 Offer 51. 数组中的逆序对</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.1.</span> <span class="nav-text">荷兰国旗问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F3-0"><span class="nav-number">1.3.2.</span> <span class="nav-text">快速排序3.0</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZCXu1</p>
+  <div class="site-description" itemprop="description">ZCXu1 Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/12/sort(II)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZCXu1">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZCXu1 Blog">
+      <meta itemprop="description" content="ZCXu1 Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Note - Sort(II) | ZCXu1 Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Note - Sort(II)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-12 10:33:50" itemprop="dateCreated datePublished" datetime="2022-12-12T10:33:50+08:00">2022-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-18 10:23:31" itemprop="dateModified" datetime="2023-02-18T10:23:31+08:00">2023-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="复杂排序（I）"><a href="#复杂排序（I）" class="headerlink" title="复杂排序（I）"></a>复杂排序（I）</h1><h2 id="Master公式"><a href="#Master公式" class="headerlink" title="Master公式"></a>Master公式</h2><p>计算递归的复杂度<br>master公式：也叫主定理。它提供了一种通过渐近符号表示递推关系式的方法。</p>
+<p>应用Master定理可以很简便的求解递归方程。</p>
+<p><code>T[n] = a*T[n/b] + O (N^d)</code></p>
+<ul>
+<li>T[n]: 母问题规模</li>
+<li>T[n&#x2F;b]: 子问题规模</li>
+<li>a: 子问题数量</li>
+<li>O(N^d): 母问题除去子问题剩余的时间复杂度<br>①当d&lt;log(b,a)时，时间复杂度为O(n^(logb a))</li>
+</ul>
+<p>②当d&#x3D;log(b,a)时，时间复杂度为O((n^d)*logn)</p>
+<p>③当d&gt;log(b,a)时，时间复杂度为O(n^d)</p>
+<p>比如归并排序 a &#x3D; 2, b &#x3D; 2,d &#x3D; 1。根据第二条，时间复杂度是O(nlogn)</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>思想是分为左侧和右侧数组 分别排序 然后用双指针合并起来 复杂度为O(NlogN)</p>
+<p><strong>归并排序思路可以用在数组中求一个数右边有几个数比它小&#x2F;大</strong>，比如逆序对问题。</p>
+<h3 id="初始算法"><a href="#初始算法" class="headerlink" title="初始算法"></a>初始算法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LEETCODE 912. 排序数组</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mergeSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="literal">null</span> || a.length &lt; <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">        process(a, <span class="number">0</span>, a.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r) <span class="keyword">return</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        process(a, l, mid);</span><br><span class="line">        process(a, mid + <span class="number">1</span>, r);</span><br><span class="line">        merge(a, l, mid, r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> mid, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="comment">// 两个部分 l~mid和mid+1到r都有序了</span></span><br><span class="line">        <span class="type">int</span>[] help = <span class="keyword">new</span> <span class="title class_">int</span>[r - l + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// pointer of help[]</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">p1</span> <span class="operator">=</span> l; <span class="comment">// pointer of left</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">p2</span> <span class="operator">=</span> mid + <span class="number">1</span>; <span class="comment">// pointer of right</span></span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= mid &amp;&amp; p2 &lt;= r) &#123;</span><br><span class="line">            help[i++] = a[p1] &lt;= a[p2] ? a[p1++] : a[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= mid) &#123;</span><br><span class="line">            help[i++] = a[p1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p2 &lt;= r) &#123;</span><br><span class="line">            help[i++] = a[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; r - l + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            a[l + i] = help[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortArray(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        mergeSort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="衍生问题：剑指-Offer-51-数组中的逆序对"><a href="#衍生问题：剑指-Offer-51-数组中的逆序对" class="headerlink" title="衍生问题：剑指 Offer 51. 数组中的逆序对"></a>衍生问题：剑指 Offer 51. 数组中的逆序对</h3><blockquote>
+<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+</blockquote>
+<p>本质就是求数组中每个数的右边有几个数比它小</p>
+<p>做归并排序的过程中 统计某个数右边有几个数比它小 排序是一定要做的 这样方便直接算出个数</p>
+<p>比如 某个过程中划分到了 [[A,B,C],[D,E]],[[F,G,H],[I,J]]</p>
+<p>对于数B而言，合并到A,B的时候是没有看到B右侧的，当A,B和C合并时，检查C是否小于B并把ABC排序，后续再与<br>D,E合并时，检查D和E中比B小的，并把ABCDE排序，后续和FGHIJ（有序）合并时双指针检查到G＞B，则直接算出后面一共4个小于B的。</p>
+<p>要注意两点，一个是注意归并排序要从大到小，因为我们要看一个数右边比它小的</p>
+<p>另一个是当双指针指向的两个数相等时，把右边的先放到暂存数组，这样才能保证不漏且答案正确</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="comment">// </span></span><br><span class="line">    <span class="comment">// 逆归并排序过程中求逆序对</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">reversePairs</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="literal">null</span> || nums.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> helper(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 把nums的l~r部分做归并排序从大到小并统计逆序对个数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">helper</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> helper(nums, l, mid) +</span><br><span class="line">                helper(nums, mid + <span class="number">1</span>, r) +</span><br><span class="line">                merge(nums, l, mid, r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> mid, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] temp = <span class="keyword">new</span> <span class="title class_">int</span>[r - l + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">p1</span> <span class="operator">=</span> l;</span><br><span class="line">        <span class="type">int</span> <span class="variable">p2</span> <span class="operator">=</span> mid + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= mid &amp;&amp; p2 &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[p1]&gt;nums[p2])&#123;</span><br><span class="line">                temp[i++]=nums[p1++];</span><br><span class="line">                res += r-p2+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                temp[i++]=nums[p2++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=mid)&#123;</span><br><span class="line">            temp[i++] = nums[p1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=r)&#123;</span><br><span class="line">            temp[i++] = nums[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; temp.length;i++)&#123;</span><br><span class="line">            nums[l+i] = temp[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><h3 id="荷兰国旗问题"><a href="#荷兰国旗问题" class="headerlink" title="荷兰国旗问题"></a>荷兰国旗问题</h3><p>荷兰国旗问题，给定一个数组和一个值 把这个数组从左到右划分为小于等于和大于这个值的三个区域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NetherlandFlag</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">nf</span><span class="params">(<span class="type">int</span>[] a,<span class="type">int</span> k)</span>&#123;</span><br><span class="line">        <span class="comment">// 三指针 分别是左边小于区域A的右边界（包含） 初始是-1</span></span><br><span class="line">        <span class="comment">// 大于区域B的左边界（包含） 初始是n</span></span><br><span class="line">        <span class="comment">// 遍历数组的指针位置 i</span></span><br><span class="line">        <span class="comment">// 算法逻辑是 若a[i] &lt; k，则A边界的右边第一个元素和a[i]交换 A边界右扩，i++</span></span><br><span class="line">        <span class="comment">// 若a[i] = k，则i++</span></span><br><span class="line">        <span class="comment">// 若a[i] &gt; k，则B边界左边第一个元素和a[i]交换 B边界左扩，i保持不动，i不动的原因是数组后边是我们没遍历过的元素 要继续审查</span></span><br><span class="line">        <span class="keyword">if</span> (a == <span class="literal">null</span> || a.length &lt; <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> a.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">p1</span>  <span class="operator">=</span> -<span class="number">1</span>, p2 = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; p2;) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] &lt; k)&#123;</span><br><span class="line">                swap(a,i++,++p1);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (a[i] == k)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                swap(a,i,--p2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="快速排序3-0"><a href="#快速排序3-0" class="headerlink" title="快速排序3.0"></a>快速排序3.0</h3><p>1.0版本是，对数组a[l-r]选择最后一个数a[r]作为基准值，对l到r-1进行划分，分为&lt;&#x3D;a[r]<br>和&gt;a[r]两个区域，最后把&lt;&#x3D;区域边界右边第一个元素也就是&gt;区域内的第一个元素和a[r]交换位置</p>
+<p>2.0版本在1.0的基础上改为荷兰国旗问题，划分&lt;，&#x3D;和&gt;三个区域，最后&#x3D;区域边界右边第一个元素也就是&gt;区域内的第一个元素和a[r]交换位置</p>
+<p>3.0版本要避免最差情况，所以在2.0基础上，划分前要随机选取一个数和最后一个位置的数交换，这样在数学期望上<br>复杂度是O(NlogN)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成指定范围内的随机数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> min 最小整数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> max 最大整数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 范围内随机数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">randomInt</span><span class="params">(<span class="type">int</span> min, <span class="type">int</span> max)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(max)%(max-min+<span class="number">1</span>)+min;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 快速排序</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] a)</span>&#123;</span><br><span class="line">        <span class="comment">// 普通的快排中划分是前面是&lt;=区域A 后面是&gt; 区域</span></span><br><span class="line">        <span class="comment">// 方法是双指针 一个指针是A区域右边界（包含），一个是遍历数组的i</span></span><br><span class="line">        <span class="comment">// 当a[i]&lt;=k的时候 A区域右边第一个元素和a[i]交换 并且A右边界扩充， i++</span></span><br><span class="line">        <span class="comment">// 当a[i]&gt;k的时候 i++</span></span><br><span class="line">        <span class="comment">// 但是快排可以被三指针的荷兰国旗问题优化 因为荷兰国旗一次搞定一批等于k的数</span></span><br><span class="line">        <span class="comment">// 选最后一个数当k 划分k左边的部分 然后和=区域的右边界后第一个也就是&gt;区域的第一个交换</span></span><br><span class="line">        <span class="comment">// 避免最差情况 要随机选一个数和最后交换</span></span><br><span class="line">        <span class="keyword">if</span> (a == <span class="literal">null</span> || a.length &lt; <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">        helper(a,<span class="number">0</span>,a.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">void</span> <span class="title function_">helper</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l &lt; r)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> randomInt(l,r);</span><br><span class="line">            swap(a,k,r);</span><br><span class="line">            <span class="type">int</span>[] p = partition(a,l,r);</span><br><span class="line">            helper(a,l,p[<span class="number">0</span>]-<span class="number">1</span>);</span><br><span class="line">            helper(a,p[<span class="number">1</span>]+<span class="number">1</span>,r);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="type">int</span>[] partition(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)&#123;</span><br><span class="line">        <span class="comment">// 取最后一个数做基准</span></span><br><span class="line">        <span class="comment">// 划分a[r]前面的部分</span></span><br><span class="line">        <span class="comment">// 荷兰国旗 三指针</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">p1</span> <span class="operator">=</span> l - <span class="number">1</span>, p2 = r; <span class="comment">// 划分pivot前面的部分 所以边界不是r+1是r</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt; p2;)&#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] &lt; a[r])&#123;</span><br><span class="line">                swap(a,i++,++p1);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (a[i] == a[r])&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                swap(a,i,--p2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// [&lt;,&lt;,&lt;,....,&lt;,=,=,...,=,&gt;,&gt;,....&gt;,pivot]</span></span><br><span class="line">        <span class="comment">// [.........,p1,.........,p2,......,r]</span></span><br><span class="line">        swap(a,p2,r);</span><br><span class="line">        <span class="comment">// [&lt;,&lt;,&lt;,....,&lt;,=,=,...,=,pivot,&gt;,....&gt;]</span></span><br><span class="line">        <span class="comment">// [.........,p1,.........,p2    ,......]</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;p1+<span class="number">1</span>,p2&#125;;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortArray(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        quickSort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/12/sort(I)/" rel="prev" title="Note - Sort(I)">
+                  <i class="fa fa-chevron-left"></i> Note - Sort(I)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/12/12/sort(III)/" rel="next" title="Note - Sort(III)">
+                  Note - Sort(III) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZCXu1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
